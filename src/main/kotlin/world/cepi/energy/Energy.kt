@@ -30,6 +30,9 @@ var Player.energy: Int
         if (value < 0) {
            cap = 0
         }
+        if (value > this.maxEnergy) {
+            cap = this.maxEnergy
+        }
         initData(this)
         val event = EnergyChangeEvent(this.energy, cap, this)
         this.callCancellableEvent(EnergyChangeEvent::class.java, event) {
@@ -51,7 +54,7 @@ var Player.maxEnergy: Int
 var Player.energyRegen: Int
     get() {
         initData(this)
-        return this.data!!.getOrDefault<Int>(keyEnergyRegen, 20)!!
+        return this.data!!.getOrDefault<Int>(keyEnergyRegen, 1)!!
     }
     set(value) {
         initData(this)
@@ -61,7 +64,7 @@ var Player.energyRegen: Int
 var Player.energyRegenTimeout: Int
     get() {
         initData(this)
-        return this.data!!.getOrDefault<Int>(keyEnergyRegenTimeout, 20)!!
+        return this.data!!.getOrDefault<Int>(keyEnergyRegenTimeout, 1)!!
     }
     set(value) {
         initData(this)
@@ -80,5 +83,8 @@ fun onAttack(event: PlayerBlockInteractEvent) {
 
 
 }
+
+//Energy Regen
+
 
 
