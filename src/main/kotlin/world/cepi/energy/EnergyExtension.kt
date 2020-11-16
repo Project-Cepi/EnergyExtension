@@ -12,13 +12,13 @@ class EnergyExtension : Extension() {
     override fun initialize() {
         MinecraftServer.getConnectionManager().addPlayerInitialization { player ->
             player.energy = player.maxEnergy
-            player.addEventCallback(PlayerBlockInteractEvent::class.java) {
-                onAttack(it)
-            }
-            player.addEventCallback(EnergyChangeEvent::class.java) {
-                displayFood(it)
-            }
-            MinecraftServer.getSchedulerManager().buildTask { player.energy += player.energyRegen }.repeat(player.energyRegenTimeout.toLong(), TimeUnit.SECOND).schedule()
+
+            player.addEventCallback(PlayerBlockInteractEvent::class.java) { onAttack(it) }
+            player.addEventCallback(EnergyChangeEvent::class.java) { displayFood(it) }
+
+            MinecraftServer.getSchedulerManager().buildTask { player.energy += player.energyRegen }
+                .repeat(player.energyRegenTimeout.toLong(), TimeUnit.SECOND)
+                .schedule()
         }
         logger.info("[EnergyExtension] has been enabled!")
     }

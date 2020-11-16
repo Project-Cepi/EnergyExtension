@@ -7,5 +7,4 @@ class EnergyChangeEvent(
     val oldEnergy: Int,
     val newEnergy: Int,
     val player: Player,
-) : CancellableEvent() {
-}
+) : CancellableEvent()

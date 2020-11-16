@@ -12,8 +12,8 @@ import kotlin.math.round
 
 const val keyEnergy = "energy"
 const val keyEnergyMax = "energy-max"
-const val keyEnergyRegen = "energy-max"
-const val keyEnergyRegenTimeout = "energy-max"
+const val keyEnergyRegen = "energy-regen"
+const val keyEnergyRegenTimeout = "energy-regen-timeout"
 
 private fun initData(player: Player) {
     if (player.data == null)
@@ -26,13 +26,7 @@ var Player.energy: Int
         return this.data!!.getOrDefault<Int>(keyEnergy, 20)!!
     }
     set(value) {
-        var cap = value
-        if (value < 0) {
-           cap = 0
-        }
-        if (value > this.maxEnergy) {
-            cap = this.maxEnergy
-        }
+        val cap = value.coerceIn(0..this.maxEnergy)
         initData(this)
         val event = EnergyChangeEvent(this.energy, cap, this)
         this.callCancellableEvent(EnergyChangeEvent::class.java, event) {
@@ -72,19 +66,13 @@ var Player.energyRegenTimeout: Int
     }
 
 fun displayFood(event: EnergyChangeEvent) {
-    val units = floor(((event.newEnergy.toFloat() / event.player.maxEnergy.toFloat())*20).toFloat())
-    println(units)
+    val units = floor(((event.newEnergy.toFloat() / event.player.maxEnergy.toFloat()) * 20))
     event.player.food = units.toInt()
 }
 
 fun onAttack(event: PlayerBlockInteractEvent) {
     val player = event.player
     player.energy -= 1
-
-
 }
-
-//Energy Regen
-
 
 
