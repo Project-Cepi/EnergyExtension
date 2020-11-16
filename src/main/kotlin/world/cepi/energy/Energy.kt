@@ -20,7 +20,11 @@ var Player.energy: Int
     }
     set(value) {
         initData(this)
-        return this.data!!.set(keyEnergy, value)
+        val event = EnergyChangeEvent(this.energy, value)
+        this.callCancellableEvent(EnergyChangeEvent::class.java, event) {
+            if (!event.isCancelled)
+                this.data!!.set(keyEnergy, value)
+        }
     }
 
 var Player.maxEnergy: Int
