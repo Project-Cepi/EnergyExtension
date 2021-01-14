@@ -41,7 +41,7 @@ dependencies {
     implementation("khttp:khttp:1.0.0")
 
     // Implement Klaxon
-    implementation("com.beust:klaxon:5.0.1")
+    implementation("com.beust:klaxon:5.4")
 }
 
 tasks.withType<Test> {
