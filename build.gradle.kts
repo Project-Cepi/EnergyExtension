@@ -35,7 +35,7 @@ dependencies {
     implementation("com.github.Minestom:Minestom:1a8baf36f6")
 
     // Use the Netty library
-    implementation("io.netty:netty-transport-native-epoll:4.1.52.Final")
+    implementation("io.netty:netty-transport-native-epoll:4.1.58.Final")
 
     // KHTTP
     implementation("khttp:khttp:1.0.0")
