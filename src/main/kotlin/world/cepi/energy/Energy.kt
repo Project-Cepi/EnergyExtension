@@ -65,9 +65,3 @@ fun displayFood(event: PlayerEnergyChangeEvent) {
     event.player.food = units.toInt()
 }
 
-fun onAttack(event: PlayerBlockInteractEvent) {
-    val player = event.player
-    player.energy -= 1
-}
-
-
