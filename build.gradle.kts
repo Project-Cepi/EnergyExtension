@@ -1,6 +1,7 @@
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
     id("org.jetbrains.kotlin.jvm") version "1.4.21-2"
+    kotlin("plugin.serialization") version "1.4.10"
 
     // Apply the application plugin to add support for building a jar
     java
@@ -9,10 +10,11 @@ plugins {
 repositories {
     // Use jcenter for resolving dependencies.
     jcenter()
+    mavenCentral()
 
     // Use mavenCentral
     maven(url = "https://repo1.maven.org/maven2/")
-    maven(url = "http://repo.spongepowered.org/maven")
+    maven(url = "https://repo.spongepowered.org/maven")
     maven(url = "https://libraries.minecraft.net")
     maven(url = "https://jitpack.io")
     maven(url = "https://jcenter.bintray.com/")
@@ -32,16 +34,22 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.7.0")
 
     // Compile Minestom into project
-    implementation("com.github.Minestom:Minestom:1a8baf36f6")
+    implementation("com.github.Minestom:Minestom:fa0c5050e4")
 
     // Use the Netty library
     implementation("io.netty:netty-transport-native-epoll:4.1.58.Final")
 
-    // KHTTP
-    implementation("khttp:khttp:1.0.0")
+    // Add OkHTTP3
+    implementation("com.squareup.okhttp3", "okhttp", "4.9.0")
+
+    // Use kotlinx serialization
+    implementation("org.jetbrains.kotlinx", "kotlinx-serialization-json", "1.0.1")
 
     // Implement Klaxon
     implementation("com.beust:klaxon:5.4")
+
+    // implement KStom
+    implementation("com.github.Project-Cepi:KStom:36bf7acd32")
 }
 
 tasks.withType<Test> {

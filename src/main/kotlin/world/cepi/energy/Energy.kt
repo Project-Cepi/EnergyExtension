@@ -1,14 +1,9 @@
 package world.cepi.energy
 
 import net.minestom.server.data.DataImpl
-import net.minestom.server.entity.EntityType
 import net.minestom.server.entity.Player
-import net.minestom.server.event.entity.EntityAttackEvent
-import net.minestom.server.event.entity.EntityDamageEvent
 import net.minestom.server.event.player.PlayerBlockInteractEvent
-import net.minestom.server.event.player.PlayerMoveEvent
 import kotlin.math.floor
-import kotlin.math.round
 
 const val keyEnergy = "energy"
 const val keyEnergyMax = "energy-max"
@@ -28,8 +23,8 @@ var Player.energy: Int
     set(value) {
         val cap = value.coerceIn(0..this.maxEnergy)
         initData(this)
-        val event = EnergyChangeEvent(this.energy, cap, this)
-        this.callCancellableEvent(EnergyChangeEvent::class.java, event) {
+        val event = PlayerEnergyChangeEvent(this.energy, cap, this)
+        callCancellableEvent(PlayerEnergyChangeEvent::class.java, event) {
             if (!event.isCancelled)
                 this.data!!.set(keyEnergy, cap)
         }
@@ -65,7 +60,7 @@ var Player.energyRegenTimeout: Int
         return this.data!!.set(keyEnergyRegenTimeout, value)
     }
 
-fun displayFood(event: EnergyChangeEvent) {
+fun displayFood(event: PlayerEnergyChangeEvent) {
     val units = floor(((event.newEnergy.toFloat() / event.player.maxEnergy.toFloat()) * 20))
     event.player.food = units.toInt()
 }
