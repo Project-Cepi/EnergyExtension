@@ -37,7 +37,7 @@ dependencies {
     implementation("com.github.Minestom:Minestom:fa0c5050e4")
 
     // Use the Netty library
-    implementation("io.netty:netty-transport-native-epoll:4.1.58.Final")
+    implementation("io.netty:netty-transport-native-epoll:4.1.59.Final")
 
     // Add OkHTTP3
     implementation("com.squareup.okhttp3", "okhttp", "4.9.0")
