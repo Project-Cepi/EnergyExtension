@@ -3,6 +3,7 @@ package world.cepi.energy
 import net.minestom.server.MinecraftServer
 import net.minestom.server.extensions.Extension;
 import net.minestom.server.utils.time.TimeUnit
+import world.cepi.energy.command.EnergyCommand
 
 class EnergyExtension : Extension() {
 
@@ -16,6 +17,9 @@ class EnergyExtension : Extension() {
                 .repeat(player.energyRegenTimeout.toLong(), TimeUnit.SECOND)
                 .schedule()
         }
+
+        MinecraftServer.getCommandManager().register(EnergyCommand())
+
         logger.info("[EnergyExtension] has been enabled!")
     }
 

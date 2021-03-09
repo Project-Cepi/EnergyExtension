@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
     id("org.jetbrains.kotlin.jvm") version "1.4.30"
@@ -34,7 +36,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.7.1")
 
     // Compile Minestom into project
-    implementation("com.github.Minestom:Minestom:fa0c5050e4")
+    implementation("com.github.Minestom:Minestom:7241dbdcf7")
 
     // Use the Netty library
     implementation("io.netty:netty-transport-native-epoll:4.1.59.Final")
@@ -49,7 +51,7 @@ dependencies {
     implementation("com.beust:klaxon:5.4")
 
     // implement KStom
-    implementation("com.github.Project-Cepi:KStom:36bf7acd32")
+    implementation("com.github.Project-Cepi:KStom:6d054839bf")
 }
 
 tasks.withType<Test> {
@@ -60,3 +62,6 @@ java {
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
 }
+
+tasks.withType<KotlinCompile> { kotlinOptions.jvmTarget = "11" }
+val compileKotlin: KotlinCompile by tasks
