@@ -48,7 +48,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx", "kotlinx-serialization-json", "1.0.1")
 
     // Implement Klaxon
-    implementation("com.beust:klaxon:5.4")
+    implementation("com.beust:klaxon:5.5")
 
     // implement KStom
     implementation("com.github.Project-Cepi:KStom:6d054839bf")
