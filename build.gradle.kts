@@ -36,22 +36,13 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.7.1")
 
     // Compile Minestom into project
-    implementation("com.github.Minestom:Minestom:7241dbdcf7")
-
-    // Use the Netty library
-    implementation("io.netty:netty-transport-native-epoll:4.1.63.Final")
-
-    // Add OkHTTP3
-    implementation("com.squareup.okhttp3", "okhttp", "4.9.0")
+    implementation("com.github.Project-Cepi:Minestom:cd0ea0c0c2")
 
     // Use kotlinx serialization
     implementation("org.jetbrains.kotlinx", "kotlinx-serialization-json", "1.0.1")
 
-    // Implement Klaxon
-    implementation("com.beust:klaxon:5.5")
-
     // implement KStom
-    implementation("com.github.Project-Cepi:KStom:6d054839bf")
+    implementation("com.github.Project-Cepi:KStom:570ab31fd2")
 }
 
 tasks.withType<Test> {
