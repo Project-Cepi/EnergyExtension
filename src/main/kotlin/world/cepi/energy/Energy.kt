@@ -3,6 +3,7 @@ package world.cepi.energy
 import net.minestom.server.data.DataImpl
 import net.minestom.server.entity.Player
 import net.minestom.server.event.player.PlayerBlockInteractEvent
+import world.cepi.kstom.Manager
 import kotlin.math.floor
 
 const val keyEnergy = "energy"
@@ -24,7 +25,7 @@ var Player.energy: Int
         val cap = value.coerceIn(0..this.maxEnergy)
         initData(this)
         val event = PlayerEnergyChangeEvent(this.energy, cap, this)
-        callCancellableEvent(PlayerEnergyChangeEvent::class.java, event) {
+        Manager.globalEvent.callCancellable(event) {
             if (!event.isCancelled)
                 this.data!!.set(keyEnergy, cap)
         }

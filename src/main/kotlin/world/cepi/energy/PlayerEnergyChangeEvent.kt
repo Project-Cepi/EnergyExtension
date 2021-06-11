@@ -1,14 +1,16 @@
 package world.cepi.energy
 
 import net.minestom.server.entity.Player
-import net.minestom.server.event.CancellableEvent
-import net.minestom.server.event.PlayerEvent
+import net.minestom.server.event.trait.CancellableEvent
+import net.minestom.server.event.trait.PlayerEvent
 
 class PlayerEnergyChangeEvent(
     val oldEnergy: Int,
     val newEnergy: Int,
-    player: Player,
-) : CancellableEvent, PlayerEvent(player) {
+    private val _player: Player,
+) : CancellableEvent, PlayerEvent {
+
+    override fun getPlayer() = _player
 
     private var cancelled = false
 
