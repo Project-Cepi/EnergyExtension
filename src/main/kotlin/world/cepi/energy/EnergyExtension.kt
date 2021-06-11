@@ -1,32 +1,36 @@
 package world.cepi.energy
 
-import net.minestom.server.MinecraftServer
+import net.minestom.server.event.EventFilter
+import net.minestom.server.event.EventNode
 import net.minestom.server.event.player.PlayerSpawnEvent
 import net.minestom.server.extensions.Extension;
 import net.minestom.server.utils.time.TimeUnit
 import world.cepi.energy.command.EnergyCommand
 import world.cepi.kstom.Manager
-import world.cepi.kstom.addEventCallback
 import world.cepi.kstom.command.register
 import world.cepi.kstom.command.unregister
+import world.cepi.kstom.event.listenOnly
 
 class EnergyExtension : Extension() {
 
     override fun initialize() {
-        MinecraftServer.getConnectionManager().addPlayerInitialization { player ->
 
-            player.addEventCallback<PlayerSpawnEvent> {
+        val playerNode = EventNode.type("energy-player-set", EventFilter.PLAYER)
 
-                player.energy = player.maxEnergy
+        playerNode.listenOnly<PlayerSpawnEvent> {
 
-                Manager.scheduler.buildTask { player.energy += player.energyRegen }
-                    .repeat(player.energyRegenTimeout.toLong(), TimeUnit.SECOND)
-                    .schedule()
+            player.energy = player.maxEnergy
 
-            }
+            Manager.scheduler.buildTask { player.energy += player.energyRegen }
+                .repeat(player.energyRegenTimeout.toLong(), TimeUnit.SECOND)
+                .schedule()
 
-            player.addEventCallback(::displayFood)
         }
+
+
+        playerNode.listenOnly(::displayFood)
+
+        eventNode.addChild(playerNode)
 
         EnergyCommand.register()
 
