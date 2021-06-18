@@ -54,3 +54,15 @@ java {
 
 tasks.withType<KotlinCompile> { kotlinOptions.jvmTarget = "11" }
 val compileKotlin: KotlinCompile by tasks
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = project.properties["group"] as? String?
+            artifactId = project.name
+            version = project.properties["version"] as? String?
+
+            from(components["java"])
+        }
+    }
+}
