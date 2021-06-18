@@ -7,6 +7,7 @@ plugins {
 
     // Apply the application plugin to add support for building a jar
     java
+    `maven-publish`
 }
 
 repositories {
@@ -15,7 +16,6 @@ repositories {
 
     maven(url = "https://jitpack.io")
     maven(url = "https://repo.spongepowered.org/maven")
-    maven(url = "https://repo.minestom.com/repository/maven-public/")
     maven(url = "https://repo.velocitypowered.com/snapshots/")
 }
 
@@ -34,7 +34,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.7.2")
 
     // Compile Minestom into project
-    implementation("com.github.Minestom:Minestom:78cc392007")
+    implementation("com.github.Minestom:Minestom:731a1006a7")
 
     // Use kotlinx serialization
     implementation("org.jetbrains.kotlinx", "kotlinx-serialization-json", "1.2.1")
