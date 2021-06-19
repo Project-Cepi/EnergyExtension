@@ -44,14 +44,14 @@ var Player.maxEnergy: Int
 var Player.energyRegen: Int
     get() {
         initData(this)
-        return this.data!!.getOrDefault<Int>(keyEnergyRegen, 1)!!
+        return this.data!!.getOrDefault<Int>(keyEnergyRegen, 4)!!
     }
     set(value) {
         initData(this)
         return this.data!!.set(keyEnergyRegen, value)
     }
 
-var Player.energyRegenTimeout: Int
+var Player.energyRegenInterval: Int
     get() {
         initData(this)
         return this.data!!.getOrDefault<Int>(keyEnergyRegenTimeout, 1)!!

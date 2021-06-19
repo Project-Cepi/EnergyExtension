@@ -22,7 +22,7 @@ class EnergyExtension : Extension() {
             player.energy = player.maxEnergy
 
             Manager.scheduler.buildTask { player.energy += player.energyRegen }
-                .repeat(player.energyRegenTimeout.toLong(), TimeUnit.SECOND)
+                .repeat(player.energyRegenInterval.toLong(), TimeUnit.SECOND)
                 .schedule()
 
         }
