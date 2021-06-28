@@ -61,8 +61,8 @@ var Player.energyRegenInterval: Int
         return this.data!!.set(keyEnergyRegenTimeout, value)
     }
 
-fun displayFood(event: PlayerEnergyChangeEvent) {
-    val units = floor(((event.newEnergy.toFloat() / event.player.maxEnergy.toFloat()) * 20))
-    event.player.food = units.toInt()
+fun displayFood(event: PlayerEnergyChangeEvent) = with(event) {
+    val units = floor(((newEnergy.toFloat() / player.maxEnergy.toFloat()) * 20))
+    player.food = units.toInt()
 }
 

@@ -12,13 +12,27 @@ object EnergyCommand : Command("energy") {
     init {
 
         val set = "set".literal()
+        val add = "add".literal()
+        val remove = "remove".literal()
+
         val amount = ArgumentType.Integer("amount").min(0).max(20)
 
-        addSyntax(set, amount) { sender, args ->
+        addSyntax(set, amount) {
 
             val player = sender as Player
 
-            player.energy = args.get(amount)
+            player.energy = context.get(amount)
+        }
+
+        addSyntax(add, amount) {
+            val player = sender as Player
+
+            player.energy += context.get(amount)
+        }
+
+        addSyntax(remove, amount) {
+            val player = sender as Player
+            player.energy -= context.get(amount)
         }
 
     }
