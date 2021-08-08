@@ -3,7 +3,7 @@ package world.cepi.energy
 import net.minestom.server.event.EventFilter
 import net.minestom.server.event.EventNode
 import net.minestom.server.event.player.PlayerSpawnEvent
-import net.minestom.server.extensions.Extension;
+import net.minestom.server.extensions.Extension
 import net.minestom.server.utils.time.TimeUnit
 import world.cepi.energy.command.EnergyCommand
 import world.cepi.kstom.Manager

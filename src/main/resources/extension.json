@@ -1,5 +1,11 @@
 {
   "entrypoint": "world.cepi.energy.EnergyExtension",
   "name": "EnergyExtension",
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "dependencies": [
+    "KStom"
+  ],
+  "meta": {
+    "downloadURL": "https://github.com/Project-Cepi/EnergyExtension/releases/download/latest/EnergyExtension-1.0.0.jar"
+  }
 }
