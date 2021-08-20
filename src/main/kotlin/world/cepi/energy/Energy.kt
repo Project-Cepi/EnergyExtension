@@ -1,64 +1,50 @@
 package world.cepi.energy
 
-import net.minestom.server.data.DataImpl
 import net.minestom.server.entity.Player
-import net.minestom.server.event.player.PlayerBlockInteractEvent
+import net.minestom.server.tag.Tag
 import world.cepi.kstom.Manager
 import kotlin.math.floor
 
-const val keyEnergy = "energy"
-const val keyEnergyMax = "energy-max"
-const val keyEnergyRegen = "energy-regen"
-const val keyEnergyRegenTimeout = "energy-regen-timeout"
-
-private fun initData(player: Player) {
-    if (player.data == null)
-        player.data = DataImpl()
-}
+val keyEnergy = Tag.Integer("energy")
+val keyEnergyMax = Tag.Integer("energy-max")
+val keyEnergyRegen = Tag.Integer("energy-regen")
+val keyEnergyRegenTimeout = Tag.Integer("energy-regen-timeout")
 
 var Player.energy: Int
     get() {
-        initData(this)
-        return this.data!!.getOrDefault<Int>(keyEnergy, 20)!!
+        return this.getTag(keyEnergy) ?: 20
     }
     set(value) {
         val cap = value.coerceIn(0..this.maxEnergy)
-        initData(this)
         val event = PlayerEnergyChangeEvent(this.energy, cap, this)
         Manager.globalEvent.callCancellable(event) {
             if (!event.isCancelled)
-                this.data!!.set(keyEnergy, cap)
+                this.setTag(keyEnergy, cap)
         }
     }
 
 var Player.maxEnergy: Int
     get() {
-        initData(this)
-        return this.data!!.getOrDefault<Int>(keyEnergyMax, 20)!!
+        return this.getTag(keyEnergyMax) ?: 20
     }
     set(value) {
-        initData(this)
-        return this.data!!.set(keyEnergyMax, value)
+        return this.setTag(keyEnergyMax, value)
     }
 
 var Player.energyRegen: Int
     get() {
-        initData(this)
-        return this.data!!.getOrDefault<Int>(keyEnergyRegen, 4)!!
+        return this.getTag(keyEnergyRegen) ?: 4
     }
     set(value) {
-        initData(this)
-        return this.data!!.set(keyEnergyRegen, value)
+        return this.setTag(keyEnergyRegen, value)
     }
 
 var Player.energyRegenInterval: Int
     get() {
-        initData(this)
-        return this.data!!.getOrDefault<Int>(keyEnergyRegenTimeout, 1)!!
+        return this.getTag(keyEnergyRegenTimeout) ?: 1
     }
     set(value) {
-        initData(this)
-        return this.data!!.set(keyEnergyRegenTimeout, value)
+        return this.setTag(keyEnergyRegenTimeout, value)
     }
 
 fun displayFood(event: PlayerEnergyChangeEvent) = with(event) {

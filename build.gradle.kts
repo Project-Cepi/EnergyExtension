@@ -34,13 +34,13 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.7.2")
 
     // Compile Minestom into project
-    implementation("com.github.Minestom:Minestom:30f3fdd99a")
+    implementation("com.github.Minestom:Minestom:2ef8e957a0")
 
     // Use kotlinx serialization
     implementation("org.jetbrains.kotlinx", "kotlinx-serialization-json", "1.2.1")
 
     // implement KStom
-    implementation("com.github.Project-Cepi:KStom:07949853d1")
+    implementation("com.github.Project-Cepi:KStom:04d5c6a4f4")
 }
 
 tasks.withType<Test> {
