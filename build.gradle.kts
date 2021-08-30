@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
     id("org.jetbrains.kotlin.jvm") version "1.5.30"
-    kotlin("plugin.serialization") version "1.4.10"
+    kotlin("plugin.serialization") version "1.5.30"
 
     // Apply the application plugin to add support for building a jar
     java
