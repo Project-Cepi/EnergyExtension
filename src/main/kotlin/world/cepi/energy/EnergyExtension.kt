@@ -7,8 +7,6 @@ import net.minestom.server.extensions.Extension
 import net.minestom.server.utils.time.TimeUnit
 import world.cepi.energy.command.EnergyCommand
 import world.cepi.kstom.Manager
-import world.cepi.kstom.command.register
-import world.cepi.kstom.command.unregister
 import world.cepi.kstom.event.listenOnly
 
 class EnergyExtension : Extension() {

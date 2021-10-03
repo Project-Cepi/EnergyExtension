@@ -34,13 +34,13 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.0")
 
     // Compile Minestom into project
-    implementation("com.github.Minestom:Minestom:2ef8e957a0")
+    implementation("com.github.Minestom:Minestom:b9746a0574")
 
     // Use kotlinx serialization
     implementation("org.jetbrains.kotlinx", "kotlinx-serialization-json", "1.2.2")
 
     // implement KStom
-    implementation("com.github.Project-Cepi:KStom:04d5c6a4f4")
+    implementation("com.github.Project-Cepi:KStom:e1158a629f")
 }
 
 tasks.withType<Test> {
@@ -48,11 +48,11 @@ tasks.withType<Test> {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = JavaVersion.VERSION_16
+    targetCompatibility = JavaVersion.VERSION_16
 }
 
-tasks.withType<KotlinCompile> { kotlinOptions.jvmTarget = "11" }
+tasks.withType<KotlinCompile> { kotlinOptions.jvmTarget = "16" }
 val compileKotlin: KotlinCompile by tasks
 
 publishing {

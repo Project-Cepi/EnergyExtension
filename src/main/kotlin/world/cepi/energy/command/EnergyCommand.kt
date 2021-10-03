@@ -1,40 +1,30 @@
 package world.cepi.energy.command
 
-import net.minestom.server.command.builder.Command
 import net.minestom.server.command.builder.arguments.ArgumentType
-import net.minestom.server.entity.Player
 import world.cepi.energy.energy
-import world.cepi.kstom.command.addSyntax
 import world.cepi.kstom.command.arguments.literal
+import world.cepi.kstom.command.kommand.Kommand
 
-object EnergyCommand : Command("energy") {
+object EnergyCommand : Kommand({
 
-    init {
+    val set by literal
+    val add by literal
+    val remove by literal
 
-        val set = "set".literal()
-        val add = "add".literal()
-        val remove = "remove".literal()
+    val amount = ArgumentType.Integer("amount").min(0).max(20)
 
-        val amount = ArgumentType.Integer("amount").min(0).max(20)
+    onlyPlayers
 
-        addSyntax(set, amount) {
-
-            val player = sender as Player
-
-            player.energy = context.get(amount)
-        }
-
-        addSyntax(add, amount) {
-            val player = sender as Player
-
-            player.energy += context.get(amount)
-        }
-
-        addSyntax(remove, amount) {
-            val player = sender as Player
-            player.energy -= context.get(amount)
-        }
-
+    syntax(set, amount) {
+        player.energy = context.get(amount)
     }
 
-}
+    syntax(add, amount) {
+        player.energy += context.get(amount)
+    }
+
+    syntax(remove, amount) {
+        player.energy -= context.get(amount)
+    }
+
+}, "energy")
