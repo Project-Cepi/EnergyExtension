@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
-    id("org.jetbrains.kotlin.jvm") version "1.5.31"
+    id("org.jetbrains.kotlin.jvm") version "1.6.0"
     kotlin("plugin.serialization") version "1.5.31"
 
     // Apply the application plugin to add support for building a jar
@@ -34,13 +34,13 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
 
     // Compile Minestom into project
-    implementation("com.github.Minestom:Minestom:b9746a0574")
+    implementation("com.github.Minestom:Minestom:4ee5cbe424")
 
     // Use kotlinx serialization
     implementation("org.jetbrains.kotlinx", "kotlinx-serialization-json", "1.3.1")
 
     // implement KStom
-    implementation("com.github.Project-Cepi:KStom:e1158a629f")
+    implementation("com.github.Project-Cepi:KStom:05b5e1f2a1")
 }
 
 tasks.withType<Test> {
@@ -48,11 +48,11 @@ tasks.withType<Test> {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_16
-    targetCompatibility = JavaVersion.VERSION_16
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
-tasks.withType<KotlinCompile> { kotlinOptions.jvmTarget = "16" }
+tasks.withType<KotlinCompile> { kotlinOptions.jvmTarget = "17" }
 val compileKotlin: KotlinCompile by tasks
 
 publishing {

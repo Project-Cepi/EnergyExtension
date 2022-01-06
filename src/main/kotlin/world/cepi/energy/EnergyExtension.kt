@@ -8,10 +8,12 @@ import net.minestom.server.utils.time.TimeUnit
 import world.cepi.energy.command.EnergyCommand
 import world.cepi.kstom.Manager
 import world.cepi.kstom.event.listenOnly
+import world.cepi.kstom.util.log
+import world.cepi.kstom.util.node
 
 class EnergyExtension : Extension() {
 
-    override fun initialize() {
+    override fun initialize(): LoadStatus {
 
         val playerNode = EventNode.type("energy-player-set", EventFilter.PLAYER)
 
@@ -28,18 +30,20 @@ class EnergyExtension : Extension() {
 
         playerNode.listenOnly(::displayFood)
 
-        eventNode.addChild(playerNode)
+        node.addChild(playerNode)
 
         EnergyCommand.register()
 
-        logger.info("[EnergyExtension] has been enabled!")
+        log.info("[EnergyExtension] has been enabled!")
+
+        return LoadStatus.SUCCESS
     }
 
     override fun terminate() {
 
         EnergyCommand.unregister()
 
-        logger.info("[EnergyExtension] has been disabled!")
+        log.info("[EnergyExtension] has been disabled!")
     }
 
 }
