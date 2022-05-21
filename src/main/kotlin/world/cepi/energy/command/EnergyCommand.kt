@@ -13,7 +13,7 @@ object EnergyCommand : Kommand({
 
     val amount = ArgumentType.Integer("amount").min(0).max(20)
 
-    onlyPlayers
+    onlyPlayers()
 
     syntax(set, amount) {
         player.energy = context.get(amount)
